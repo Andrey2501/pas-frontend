@@ -1,0 +1,69 @@
+<div class="wrapper">
+  <div class="top-box">
+    <div class="mat-title color-accent">Special Districts</div>
+  </div>
+
+  <div class="content">
+    <div class="mat-table-box" *ngLet="dataSource$ | async as dataSource" [pasGridHeight]="dataSource">
+      <table
+        (matSortChange)="onSortChange($event)"
+        [matSortActive]="sortActive$ | async"
+        [matSortDirection]="sortDirection$ | async"
+        mat-table
+        matSort
+        [dataSource]="dataSource"
+      >
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+          <td mat-cell *matCellDef="let element">{{ element.code }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="calcCode">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Calc Code</th>
+          <td mat-cell *matCellDef="let element">{{ element.calcCode }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="calcAmount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Calc Amount</th>
+          <td mat-cell *matCellDef="let element">{{ element.calcAmount | money }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="units">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Units</th>
+          <td mat-cell *matCellDef="let element">{{ element.units }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="secondUnits">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>2nd Units</th>
+          <td mat-cell *matCellDef="let element">{{ element.secondUnits }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="percent">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Percent</th>
+          <td mat-cell *matCellDef="let element">{{ element.percent | percentage }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateAdded">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Added</th>
+          <td mat-cell *matCellDef="let element">{{ element.dateAdded | defaultDate }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          pasSelection
+          [selectionModel]="row"
+          (selectionClick)="onSelect(row)"
+          [ngClass]="{ active: row.isActive }"
+        ></tr>
+        <pas-no-table-data *matNoDataRow> There are no Special Districts </pas-no-table-data>
+      </table>
+    </div>
+  </div>
+</div>

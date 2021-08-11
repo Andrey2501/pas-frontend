@@ -1,0 +1,17 @@
+<div class="dialog-header">
+  <button class="close-dialog-btn" mat-icon-button mat-dialog-close></button>
+  <span mat-dialog-title>{{ title }}</span>
+</div>
+<mat-dialog-content>
+  <div class="content-wrap" [pasDialogSize]="formGroup">
+    <pas-contact-form
+      [isViewMode]="false"
+      [isModifyMode]="true"
+      [formControls]="formControls"
+      [formGroup]="formGroup"
+      submitButtonTitle="Add new Appraiser"
+      (cancel)="onCancel()"
+      (submitForm)="onSubmit($event)"
+    ></pas-contact-form>
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,74 @@
+<div class="wrapper">
+  <div class="top-box">
+    <div class="mat-title color-accent">Sales</div>
+  </div>
+
+  <div class="content">
+    <div class="mat-table-box" *ngLet="dataSource$ | async as dataSource" [pasGridHeight]="dataSource">
+      <table
+        (matSortChange)="onSortChange($event)"
+        [matSortActive]="sortActive$ | async"
+        [matSortDirection]="sortDirection$ | async"
+        mat-table
+        matSort
+        [dataSource]="dataSource"
+      >
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.date | defaultDate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+          <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="oldOwner">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Old Owner</th>
+          <td mat-cell *matCellDef="let element">{{ element.oldOwner }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="newOwner">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>New Owner</th>
+          <td mat-cell *matCellDef="let element">{{ element.newOwner }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="deedBk">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Deed Bk</th>
+          <td mat-cell *matCellDef="let element">{{ element.deedBk }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="page">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Page</th>
+          <td mat-cell *matCellDef="let element">{{ element.page }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="armsLength">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Arms Length</th>
+          <td mat-cell *matCellDef="let element">{{ element.armsLength }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="valid">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Valid</th>
+          <td mat-cell *matCellDef="let element">{{ element.valid | yesNo }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          pasSelection
+          [selectionModel]="row"
+          (selectionClick)="onSelect(row)"
+          [ngClass]="{ active: row.isActive }"
+        ></tr>
+        <pas-no-table-data *matNoDataRow> There are no Sales </pas-no-table-data>
+      </table>
+    </div>
+  </div>
+</div>

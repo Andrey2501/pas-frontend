@@ -1,0 +1,8 @@
+@import 'custom-components/extends/dynamic-table';
+@import 'custom-components/extends/dynamic-input-group';
+
+:host {
+  grid-column: span 2;
+  @extend %dynamic-table-md;
+  @extend %dynamic-input-group;
+}

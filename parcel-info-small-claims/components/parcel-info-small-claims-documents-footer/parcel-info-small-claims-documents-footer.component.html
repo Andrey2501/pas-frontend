@@ -1,0 +1,41 @@
+<div class="footer-form-group">
+  <div *ngIf="selectedDocumentId$ | async" class="left-box">
+    <div class="footer-form-group-stepper">Document {{ selectedDocumentIndexLabel$ | async }} of {{ documentsTotal$ | async }}</div>
+    <ng-container *ngIf="isNavigationAvailable$ | async">
+      <div class="nav-action-box">
+        <button (click)="onPrevDocument()" [disabled]="isSelectedFirstDocument$ | async" mat-flat-button color="primary-light">
+          <i class="icon-single-arrow-left"></i>
+        </button>
+        <button (click)="onNextDocument()" [disabled]="isSelectedLastDocument$ | async" mat-flat-button color="primary-light">
+          <i class="icon-single-arrow-right"></i>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+  <div class="right-box">
+    <ng-container *ngIf="isModifyMode$ | async">
+      <div class="footer-form-group-action-box">
+        <button *ngIf="isAbleToDeleteDocument$ | async" (click)="onDelete()" mat-stroked-button color="primary" class="with-icon">
+          <mat-icon>
+            <i class="icon-delete"></i>
+          </mat-icon>
+          Document
+        </button>
+
+        <button *ngIf="selectedDocumentId$ | async" (click)="onDownload()" mat-stroked-button color="primary" class="with-icon">
+          <mat-icon>
+            <i class="icon-download"></i>
+          </mat-icon>
+          Download
+        </button>
+
+        <button *ngIf="isAbleToAddDocument$ | async" (click)="onAdd()" mat-stroked-button color="primary" class="with-icon">
+          <mat-icon>
+            <i class="icon-add"></i>
+          </mat-icon>
+          Document
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

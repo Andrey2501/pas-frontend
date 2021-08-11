@@ -1,0 +1,8 @@
+:host {
+  .mat-table-box {
+    &.rows-3 {
+      height: auto;
+      max-height: 101px;
+    }
+  }
+}

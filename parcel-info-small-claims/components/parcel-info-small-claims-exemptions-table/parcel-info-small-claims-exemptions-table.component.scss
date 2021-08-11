@@ -1,0 +1,19 @@
+@import 'material/custom-theme-config';
+
+:host {
+  display: block;
+}
+
+.mat-table-box {
+  min-height: 49px;
+  max-height: 84px;
+  margin-bottom: 7px;
+}
+
+@mixin grievances-theme($theme) {
+  .revoked {
+    color: mat-color($pas-red, 500);
+  }
+}
+
+@include grievances-theme($pas-light-theme);

@@ -1,0 +1,9 @@
+@import 'custom-components/extends/dynamic-table';
+@import 'custom-components/extends/dynamic-input-group';
+
+:host {
+  margin-bottom: 20px;
+  display: block;
+  @extend %dynamic-table-lg;
+  @extend %dynamic-input-group;
+}

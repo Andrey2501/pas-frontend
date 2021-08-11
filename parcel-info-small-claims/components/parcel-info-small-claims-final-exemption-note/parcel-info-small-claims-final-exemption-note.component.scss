@@ -1,0 +1,30 @@
+@import 'material/custom-theme-config';
+@import 'src/styles/variables';
+
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.description-box {
+  font-size: 1.2rem;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: $pas-border-radius-sm;
+}
+
+@mixin grievances-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
+
+  .description-box {
+    color: mat-color($foreground, base);
+    background-color: mat-color($background, card);
+    border-color: mat-color($primary);
+  }
+}
+
+@include grievances-theme($pas-light-theme);

@@ -1,0 +1,6 @@
+<pas-spinner class="bg-transparent" *ngIf="isLoading$ | async"></pas-spinner>
+<div *ngLet="form$ | async as form" class="wrapper">
+  <pas-parcel-info-small-claims-notes-table class="table-row dynamic-table"></pas-parcel-info-small-claims-notes-table>
+  <pas-description-details *ngIf="selectedNote$ | async" [form]="form" [isEditMode]="isEditMode$ | async"> </pas-description-details>
+  <pas-parcel-info-small-claims-notes-footer [form]="form"></pas-parcel-info-small-claims-notes-footer>
+</div>

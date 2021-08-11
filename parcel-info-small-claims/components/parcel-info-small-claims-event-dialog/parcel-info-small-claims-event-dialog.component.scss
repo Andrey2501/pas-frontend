@@ -1,0 +1,6 @@
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %base-dialog;
+  width: 520px;
+}

@@ -1,0 +1,12 @@
+@import 'custom-components/extends/dynamic-input-group';
+
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 164px;
+  @extend %dynamic-input-group;
+}
+
+.top-box {
+  padding-bottom: 7px;
+}

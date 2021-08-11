@@ -1,0 +1,17 @@
+<pas-spinner *ngIf="isLoading$ | async"></pas-spinner>
+
+<div class="card wrapper">
+  <div class="info-panel-header">
+    <span class="mat-title color-accent">Small Claims</span>
+  </div>
+
+  <pas-parcel-info-small-claims-overview *ngIf="isDataExist$ | async; else noContent"> </pas-parcel-info-small-claims-overview>
+  <ng-template #noContent>
+    <pas-no-content
+      buttonLabel="SmallClaim"
+      [isShowButton]="isAbleToAddInModifyMode$ | async"
+      (add)="onAdd()"
+      emptyMessage="No Small Claims Here"
+    ></pas-no-content>
+  </ng-template>
+</div>

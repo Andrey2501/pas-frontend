@@ -1,0 +1,17 @@
+<div class="dialog-header">
+  <button class="close-dialog-btn" mat-icon-button [mat-dialog-close]="false"></button>
+
+  <span mat-dialog-title>{{ title }}</span>
+</div>
+
+<ng-container *ngLet="form$ | async as form">
+  <mat-dialog-content>
+    <pas-parcel-info-small-claims-form [form]="form" [isViewMode]="false" [isEditForm]="false"></pas-parcel-info-small-claims-form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="size-lg" mat-flat-button color="primary" (click)="onCancel()">Cancel</button>
+
+    <button class="size-lg" mat-flat-button color="accent" [pasFormSubmit]="form" (click)="onAdd()">Create Small Claim</button>
+  </mat-dialog-actions>
+</ng-container>

@@ -1,0 +1,14 @@
+<div class="top-box">
+  <div class="mat-title color-accent">Parcel Information at time of Small Claim</div>
+</div>
+<div class="input-group-grid">
+  <div class="form-field-row" *ngFor="let field of fieldsWithValues$ | async">
+    <div class="form-field-label-box">
+      <span>{{ field.label }}</span>
+    </div>
+
+    <div class="form-field-input-box" *ngLet="field.value | configuredFormattedField: field as value">
+      <span class="view-mode-text" [title]="value">{{ value }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<ng-container *ngIf="results$ | async as results">
+  <div class="form-row size-sm">
+    <div class="form-row-label">Result</div>
+    <div class="form-row-field like-label">{{ results.result }}</div>
+  </div>
+  <div class="form-row size-sm">
+    <div class="form-row-label">Result Date</div>
+    <div class="form-row-field like-label">{{ results.resultDate | userTimezoneDate }}</div>
+  </div>
+  <div class="form-row size-sm">
+    <div class="form-row-label">Resolution Number</div>
+    <div class="form-row-field like-label">{{ results.resolutionNumber }}</div>
+  </div>
+  <div class="form-row size-sm">
+    <div class="form-row-label">Final Land Value</div>
+    <div class="form-row-field like-label">{{ results.finalLandValue | money }}</div>
+  </div>
+  <div class="form-row size-sm">
+    <div class="form-row-label">Final Total Value</div>
+    <div class="form-row-field like-label">{{ results.finalTotalValue | money }}</div>
+  </div>
+  <div class="form-row size-sm">
+    <div class="form-row-label">Post Trial Memo Filed</div>
+    <div class="form-row-field like-label">{{ results.postTrialMemoFiled | userTimezoneDate }}</div>
+  </div>
+  <div class="form-row size-sm">
+    <div class="form-row-label">Final Order Date</div>
+    <div class="form-row-field like-label">{{ results.finalOrderDate | userTimezoneDate }}</div>
+  </div>
+</ng-container>

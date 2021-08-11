@@ -1,0 +1,49 @@
+// Copy-pasted styles, please remove when start styling
+
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %base-dialog;
+  @extend %dynamic-input-group-dialog;
+  width: 540px;
+}
+
+.mat-dialog-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.note-group {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  margin-bottom: 14px;
+
+  .fake-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .description-box,
+  .mat-form-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  ::ng-deep {
+    .mat-form-field-wrapper,
+    .mat-form-field-infix {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1fr);
+      align-self: stretch;
+    }
+  }
+}

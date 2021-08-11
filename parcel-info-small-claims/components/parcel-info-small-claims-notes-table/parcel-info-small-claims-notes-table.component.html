@@ -1,0 +1,49 @@
+<div class="wrapper">
+  <div class="top-box">
+    <div class="mat-title color-accent">Notes</div>
+  </div>
+
+  <div class="content">
+    <div class="table-row dynamic-table">
+      <div class="mat-table-box" *ngLet="dataSource$ | async as dataSource" [pasGridHeight]="dataSource">
+        <table
+          (matSortChange)="onSortChange($event)"
+          [matSortActive]="sortActive$ | async"
+          [matSortDirection]="sortDirection$ | async"
+          mat-table
+          matSort
+          [dataSource]="dataSource"
+        >
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Author</th>
+            <td mat-cell *matCellDef="let element">{{ element.author }}</td>
+          </ng-container>
+          <ng-container matColumnDef="noteType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Note Type</th>
+            <td mat-cell *matCellDef="let element">{{ element.noteType }}</td>
+          </ng-container>
+          <ng-container matColumnDef="dateCreated">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+            <td mat-cell *matCellDef="let element">{{ element.dateCreated | defaultDate }}</td>
+          </ng-container>
+          <ng-container matColumnDef="note">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Text</th>
+            <td mat-cell *matCellDef="let element">{{ element.note }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            pasSelection
+            [selectionModel]="row"
+            (selectionClick)="onSelect(row)"
+            (selectionPrior)="onPrev()"
+            (selectionNext)="onNext()"
+            [ngClass]="{ active: row.isActive }"
+          ></tr>
+          <pas-no-table-data *matNoDataRow> There are no Notes </pas-no-table-data>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

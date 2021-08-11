@@ -1,0 +1,38 @@
+<div class="title-box" *ngIf="isViewMode">
+  <strong>Full Market</strong>
+</div>
+
+<div class="input-group-grid block-grid" *ngLet="totalsFormControls$ | async as controls">
+  <ng-container *ngFor="let control of controls">
+    <div *ngIf="isNoFullMarketField(control.key)" class="group">
+      <pas-form-field
+        [label]="control.label"
+        [controlName]="control.key"
+        [isViewMode]="isViewMode"
+        [pasEditBoxSize]="control"
+        class="popup-field"
+      >
+        <ng-container modifyMode>
+          <pas-configured-form-control [inputControl]="control"> </pas-configured-form-control>
+        </ng-container>
+        <ng-container viewMode *ngLet="control.value | configuredFormattedField: control as value">
+          <span class="view-mode-text" [title]="value">{{ value }}</span>
+        </ng-container>
+      </pas-form-field>
+      <pas-form-field
+        *ngIf="control.key | fullMarketFormattedField: controls as controlFullMarket"
+        [controlName]="controlFullMarket.key"
+        [isViewMode]="isViewMode"
+        [pasEditBoxSize]="controlFullMarket"
+        class="popup-field no-label"
+      >
+        <ng-container modifyMode>
+          <pas-configured-form-control [inputControl]="controlFullMarket"> </pas-configured-form-control>
+        </ng-container>
+        <ng-container viewMode *ngLet="controlFullMarket.value | configuredFormattedField: control as value">
+          <span class="view-mode-text" [title]="value">{{ value }}</span>
+        </ng-container>
+      </pas-form-field>
+    </div>
+  </ng-container>
+</div>

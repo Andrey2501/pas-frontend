@@ -1,0 +1,27 @@
+:host {
+  grid-column: span 2;
+}
+
+.table-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 110px minmax(auto, 1fr);
+  grid-auto-columns: minmax(auto, 1fr);
+  grid-gap: 5px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.table-column {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+
+  .label {
+    font-weight: 600;
+  }
+}

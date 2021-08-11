@@ -1,0 +1,23 @@
+// TODO: Copy-pasted style
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %base-dialog;
+}
+
+.container-document {
+  width: 100%;
+  height: 824px;
+  display: block;
+}
+
+.image-box {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-height: 100%;
+  }
+}

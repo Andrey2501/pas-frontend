@@ -1,0 +1,18 @@
+<div class="dialog-header">
+  <button class="close-dialog-btn" mat-icon-button (click)="onCloseDialog()"></button>
+
+  <span mat-dialog-title>{{ title }}</span>
+</div>
+
+<mat-dialog-content>
+  <div class="capture">Select Grievance which new Small Claim should be based on</div>
+
+  <pas-parcel-info-grievances-select-table></pas-parcel-info-grievances-select-table>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="size-lg" mat-flat-button color="primary" (click)="onCancel()">Cancel</button>
+  <button class="size-lg" mat-flat-button color="accent" [disabled]="isSelectedUncompletedGrievance$ | async" (click)="onContinue()">
+    Continue
+  </button>
+</mat-dialog-actions>

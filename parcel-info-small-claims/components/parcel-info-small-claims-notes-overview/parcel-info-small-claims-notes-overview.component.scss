@@ -1,0 +1,11 @@
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: [table-box] auto [content-row] minmax(0, 1fr) [footer-row] auto;
+}

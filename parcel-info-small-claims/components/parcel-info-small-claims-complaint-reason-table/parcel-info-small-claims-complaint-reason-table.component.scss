@@ -1,0 +1,24 @@
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %base-dialog;
+  width: 900px;
+  height: 790px;
+}
+
+.title {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.mat-dialog-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.mat-table-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}

@@ -1,0 +1,73 @@
+<div
+  *ngLet="{
+    selectedSmallClaim: selectedSmallClaim$ | async,
+    isViewMode: isViewMode$ | async
+  } as smallClaimsInfo"
+  class="footer-form-group"
+  [class.ignore-overlay]="isModifyMode$ | async"
+>
+  <div class="left-box" *ngIf="smallClaimsInfo.selectedSmallClaim">
+    <ng-container *ngIf="smallClaimsInfo.isViewMode">
+      <div class="footer-form-group-stepper">
+        Small Claim {{ selectedSmallClaimIndexLabel$ | async }} of {{ smallClaimsTotal$ | async }}
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="isNavigationAvailable$ | async">
+      <div class="nav-action-box">
+        <button
+          mat-flat-button
+          color="primary-light"
+          *ngIf="smallClaimsInfo.isViewMode"
+          [disabled]="isSelectedFirstSmallClaim$ | async"
+          (click)="onPrev()"
+        >
+          <i class="icon-single-arrow-left"></i>
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary-light"
+          *ngIf="smallClaimsInfo.isViewMode"
+          [disabled]="isSelectedLastSmallClaim$ | async"
+          (click)="onNext()"
+        >
+          <i class="icon-single-arrow-right"></i>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="right-box">
+    <pas-footer-info
+      *ngIf="smallClaimsInfo.isViewMode"
+      [dateModified]="lastChanged$ | async"
+      [modifiedBy]="lastChangedBy$ | async"
+    ></pas-footer-info>
+
+    <ng-container *ngIf="isGlobalModifyMode$ | async">
+      <div class="footer-form-group-action-box">
+        <button mat-flat-button color="primary" class="with-icon" *ngIf="isAbleToEditSmallClaim$ | async" (click)="onEdit()">
+          <mat-icon>
+            <i class="icon-edit"></i>
+          </mat-icon>
+          Small Claim
+        </button>
+
+        <button mat-flat-button color="primary" class="with-icon" *ngIf="isAbleToAddSmallClaim$ | async" (click)="onAdd()">
+          <mat-icon>
+            <i class="icon-add"></i>
+          </mat-icon>
+          Small Claim
+        </button>
+
+        <button mat-flat-button color="primary" class="with-icon" *ngIf="isAbleToRemoveSmallClaim$ | async" (click)="onRemove()">
+          <mat-icon>
+            <i class="icon-delete"></i>
+          </mat-icon>
+          Small Claim
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

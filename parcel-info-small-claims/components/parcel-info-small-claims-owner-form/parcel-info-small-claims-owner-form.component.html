@@ -1,0 +1,19 @@
+<div class="input-group-grid">
+  <div class="divider-title">Owner Information</div>
+
+  <pas-form-field
+    *ngFor="let control of ownerInformationFormControls$ | async"
+    [label]="control.label"
+    [controlName]="control.key"
+    [isViewMode]="isViewMode"
+    [pasEditBoxSize]="control"
+    class="popup-field"
+  >
+    <ng-container modifyMode>
+      <pas-configured-form-control [inputControl]="control"> </pas-configured-form-control>
+    </ng-container>
+    <ng-container viewMode *ngLet="control.value | configuredFormattedField: control as value">
+      <span class="view-mode-text" [title]="value">{{ value }}</span>
+    </ng-container>
+  </pas-form-field>
+</div>

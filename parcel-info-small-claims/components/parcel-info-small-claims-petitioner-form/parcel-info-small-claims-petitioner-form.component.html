@@ -1,0 +1,40 @@
+<div class="input-group-grid">
+  <div class="divider-title">Petitioner Information</div>
+
+  <pas-form-field
+    *ngFor="let control of petitionerInformationFormControls$ | async"
+    [label]="control.label"
+    [isViewMode]="isViewMode"
+    [controlName]="control.key"
+    [pasEditBoxSize]="control"
+    class="popup-field"
+  >
+    <ng-container [ngSwitch]="control.key" modifyMode>
+      <pas-contact-autocomplete-search
+        *ngSwitchCase="dropdownFieldsControls.petitionerName"
+        [controlName]="control.key"
+        [isShowAddButton]="isAbleToAddContact$ | async"
+        [featureId]="contactFeatures.SmallClaimPetitioner"
+        addButtonText="Add new Petitioner"
+        (contactIdChange)="onPetitionerIdChange($event)"
+        (addContact)="onAddPetitioner()"
+      >
+      </pas-contact-autocomplete-search>
+      <pas-contact-autocomplete-search
+        *ngSwitchCase="dropdownFieldsControls.lawyerName"
+        [controlName]="control.key"
+        [isShowAddButton]="isAbleToAddContact$ | async"
+        [featureId]="contactFeatures.SmallClaimLawyer"
+        addButtonText="Add new Lawyer"
+        (contactIdChange)="onLawyerIdChange($event)"
+        (addContact)="onAddLawyer()"
+      >
+      </pas-contact-autocomplete-search>
+      <pas-configured-form-control *ngSwitchDefault [inputControl]="control"> </pas-configured-form-control>
+    </ng-container>
+
+    <ng-container viewMode *ngLet="control.value | configuredFormattedField: control as value">
+      <span class="view-mode-text" [title]="value">{{ value }}</span>
+    </ng-container>
+  </pas-form-field>
+</div>

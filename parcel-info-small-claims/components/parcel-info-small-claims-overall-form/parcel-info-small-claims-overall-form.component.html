@@ -1,0 +1,25 @@
+<div class="input-group-grid">
+  <ng-container>
+    <pas-form-field
+      [controlName]="control.key"
+      *ngFor="let control of overallInformationFormControls$ | async"
+      [label]="control.label"
+      [isViewMode]="isViewMode"
+      [pasEditBoxSize]="control"
+      class="popup-field"
+    >
+      <ng-container modifyMode [ngSwitch]="control.key">
+        <ng-container *ngSwitchCase="smallClaimComplaintReasonField">
+          <div class="flex-container">
+            <span class="view-mode-text">{{ complaintReasonValue$ | async }}</span>
+            <button mat-stroked-button color="primary" class="with-icon" (click)="onSelectComplaintReason()">Select</button>
+          </div>
+        </ng-container>
+        <pas-configured-form-control [inputControl]="control" *ngSwitchDefault> </pas-configured-form-control>
+      </ng-container>
+      <ng-container viewMode *ngLet="control.value | configuredFormattedField: control as value">
+        <span class="view-mode-text" [title]="value">{{ value }}</span>
+      </ng-container>
+    </pas-form-field>
+  </ng-container>
+</div>

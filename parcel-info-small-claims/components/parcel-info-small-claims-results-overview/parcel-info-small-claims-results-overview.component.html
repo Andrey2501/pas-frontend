@@ -1,0 +1,45 @@
+<pas-spinner class="bg-transparent" *ngIf="isLoading$ | async"></pas-spinner>
+
+<div class="scroll-box">
+  <div class="content-top">
+    <pas-parcel-info-small-claims-results-events-table
+      class="table-row dynamic-table"
+      *ngIf="isAbleToViewEvent$ | async"
+    ></pas-parcel-info-small-claims-results-events-table>
+    <pas-parcel-info-small-claims-prior-current-info></pas-parcel-info-small-claims-prior-current-info>
+    <pas-parcel-info-small-claims-results-overall></pas-parcel-info-small-claims-results-overall>
+    <pas-parcel-info-small-claims-results-final-exemptions-table></pas-parcel-info-small-claims-results-final-exemptions-table>
+  </div>
+  <ng-container *ngIf="isShowResultNotes$ | async; else exemptionNoteBlock">
+    <pas-parcel-info-small-claims-results-petitioners-reason
+      *ngLet="isModifyMode$ | async as isModifyMode"
+      [isModifyMode]="isModifyMode"
+      [isEditForm]="true"
+      [class.ignore-overlay]="isModifyMode"
+    ></pas-parcel-info-small-claims-results-petitioners-reason>
+    <ng-container *ngIf="results$ | async as results">
+      <div>
+        <div class="divider-title">Small Claims Results</div>
+        <div class="description-box">
+          {{ results.smallClaimResults }}
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-template #exemptionNoteBlock>
+    <pas-parcel-info-small-claims-final-exemption-note></pas-parcel-info-small-claims-final-exemption-note>
+  </ng-template>
+</div>
+
+<div class="footer-form-group" *ngIf="isAbleToAddEvent$ | async">
+  <div class="right-box">
+    <div class="footer-form-group-action-box">
+      <button mat-flat-button color="primary" class="with-icon" (click)="onAddEvent()">
+        <mat-icon>
+          <i class="icon-add"></i>
+        </mat-icon>
+        Event
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<ng-container
+  *ngLet="{
+    form: form$ | async,
+    isModifyMode: isModifyMode$ | async
+  } as data"
+>
+  <div class="small-claims-overview-left" [class.ignore-overlay]="data.isModifyMode">
+    <div class="content-box">
+      <pas-parcel-info-small-claims-table class="table dynamic-table" *ngIf="isListViewMode$ | async"></pas-parcel-info-small-claims-table>
+      <pas-parcel-info-small-claims-form
+        [form]="data.form"
+        [isViewMode]="isViewMode$ | async"
+        [isEditForm]="true"
+      ></pas-parcel-info-small-claims-form>
+    </div>
+    <pas-parcel-info-small-claims-footer class="footer-box"></pas-parcel-info-small-claims-footer>
+  </div>
+  <pas-parcel-info-small-claims-details></pas-parcel-info-small-claims-details>
+
+  <div class="footer-form-group" *ngIf="data.isModifyMode">
+    <div class="right-box">
+      <pas-footer-info [dateModified]="lastChanged$ | async" [modifiedBy]="lastChangedBy$ | async"></pas-footer-info>
+
+      <div class="footer-form-group-action-box ignore-overlay">
+        <button mat-flat-button color="primary" (click)="onCancel()">Cancel</button>
+        <button mat-flat-button color="accent" [pasFormSubmit]="data.form" (click)="onUpdate()">Save</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

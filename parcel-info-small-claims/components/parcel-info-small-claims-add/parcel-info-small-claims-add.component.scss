@@ -1,0 +1,39 @@
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %dynamic-input-group-dialog;
+  max-height: 840px;
+  width: 820px;
+
+  .mat-dialog-content {
+    ::ng-deep {
+      .overview-wrap {
+        &.popup-inner {
+          grid-template-rows: 1fr auto;
+        }
+      }
+
+      .grievances-title {
+        font-size: 1.2rem;
+      }
+
+      .block-grid {
+        padding: 5px 0;
+      }
+
+      .group {
+        display: block;
+      }
+
+      pas-parcel-info-grievances-overall-form {
+        pas-form-field {
+          &:nth-child(5) {
+            height: 36px;
+            padding-bottom: 6px;
+            margin-bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+}

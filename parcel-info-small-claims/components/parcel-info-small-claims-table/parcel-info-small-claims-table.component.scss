@@ -1,0 +1,7 @@
+@import 'custom-components/extends/dynamic-table';
+
+:host {
+  display: block;
+  width: 100%;
+  @extend %dynamic-table-lg;
+}

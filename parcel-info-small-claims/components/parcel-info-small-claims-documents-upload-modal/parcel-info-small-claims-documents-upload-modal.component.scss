@@ -1,0 +1,10 @@
+// TODO: Copy-pasted style
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %base-dialog;
+
+  .mat-dialog-actions {
+    padding: 6px 0 0;
+  }
+}

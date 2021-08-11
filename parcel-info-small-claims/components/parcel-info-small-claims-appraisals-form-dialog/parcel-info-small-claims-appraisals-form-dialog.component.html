@@ -1,0 +1,96 @@
+<ng-container *ngLet="form$ | async as form">
+  <div class="dialog-header">
+    <button class="close-dialog-btn" mat-icon-button [mat-dialog-close]="false"></button>
+
+    <span mat-dialog-title>{{ data.title }}</span>
+  </div>
+
+  <mat-dialog-content>
+    <form [formGroup]="form" class="overview-wrap popup-inner">
+      <div class="form-group">
+        <div class="form-row">
+          <div class="form-row-label size-md">
+            <span pasControlAsterisk="dateOrdered">Date Ordered:</span>
+          </div>
+          <div class="form-row-field">
+            <pas-date-picker class="size-md" formControlName="dateOrdered"></pas-date-picker>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-row-label size-md">
+            <span pasControlAsterisk="type">Type:</span>
+          </div>
+          <div class="form-row-field">
+            <mat-form-field appearance="outline" class="static-color custom-view size-md">
+              <input pasMaxLengthInputDirective matInput pasTrimValue formControlName="type" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-row-label size-md">
+            <span pasControlAsterisk="appraiserId">Appraiser:</span>
+          </div>
+          <div class="form-row-field">
+            <pas-contact-autocomplete-search
+              class="size-md"
+              controlName="appraiserId"
+              [isShowAddButton]="isAbleToAddContact$ | async"
+              addButtonText="Add new Appraiser"
+              [featureId]="contactFeatures.Appraiser"
+              (addContact)="onAddAppraiser()"
+            >
+            </pas-contact-autocomplete-search>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-row-label size-md">
+            <span>Value:</span>
+          </div>
+          <div class="form-row-field">
+            <mat-form-field appearance="outline" class="static-color custom-view size-md">
+              <input pasPositiveValueInput matInput pasTrimValue formControlName="value" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-row-label size-md">
+            <span>Date Received:</span>
+          </div>
+          <div class="form-row-field">
+            <pas-date-picker class="size-md" formControlName="dateReceived"></pas-date-picker>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-row-label size-md">
+            <span>Date Paid:</span>
+          </div>
+          <div class="form-row-field">
+            <pas-date-picker class="size-md" formControlName="datePaid"></pas-date-picker>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-row-label size-md">
+            <span>Amount Paid:</span>
+          </div>
+          <div class="form-row-field">
+            <mat-form-field appearance="outline" class="static-color custom-view size-md">
+              <input pasPositiveValueInput matInput pasTrimValue formControlName="amountPaid" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="note-group">
+          <label class="fake-label">Note:</label>
+          <pas-note-form-field [noteFormControl]="noteControl" [isModifyMode]="true"></pas-note-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="size-lg" mat-flat-button color="primary" (click)="onCancel()">Cancel</button>
+
+    <button class="size-lg" mat-flat-button color="accent" [pasFormSubmit]="form" (click)="onSave()">
+      {{ (isEditMode$ | async) ? 'Save' : 'Add new Appraisal' }}
+    </button>
+  </mat-dialog-actions>
+</ng-container>

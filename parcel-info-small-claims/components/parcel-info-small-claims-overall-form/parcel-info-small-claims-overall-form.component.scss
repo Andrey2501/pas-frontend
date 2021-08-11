@@ -1,0 +1,23 @@
+@import 'custom-components/extends/dynamic-input-group';
+
+:host {
+  .input-group-grid {
+    @extend %dynamic-form-field;
+    @extend %dynamic-configurable-field;
+    grid-gap: 3px;
+  }
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+
+  .view-mode-text {
+    width: calc(100% - 42px);
+  }
+
+  button {
+    width: 42px;
+    margin-left: auto;
+  }
+}

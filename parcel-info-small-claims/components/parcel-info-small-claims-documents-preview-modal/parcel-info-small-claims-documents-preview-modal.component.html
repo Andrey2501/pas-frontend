@@ -1,0 +1,23 @@
+<div class="dialog-header">
+  <button class="close-dialog-btn" mat-icon-button [mat-dialog-close]="false"></button>
+  <span mat-dialog-title>Preview Document</span>
+</div>
+
+<mat-dialog-content>
+  <ng-container *ngIf="isAbleToViewPreview$ | async">
+    <ng-container *ngLet="selectedDocumentUrl$ | async as selectedDocumentUrl" [ngSwitch]="selectedDocumentType$ | async">
+      <ng-container *ngSwitchCase="documentTypes.Document">
+        <ngx-doc-viewer
+          class="container-document"
+          [url]="selectedDocumentUrl"
+          [viewer]="selectedDocumentViewerType$ | async"
+        ></ngx-doc-viewer>
+      </ng-container>
+      <ng-container *ngSwitchCase="documentTypes.Image">
+        <div class="image-box">
+          <img [src]="selectedDocumentUrl" />
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</mat-dialog-content>

@@ -1,0 +1,5 @@
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %dynamic-input-group-dialog;
+}

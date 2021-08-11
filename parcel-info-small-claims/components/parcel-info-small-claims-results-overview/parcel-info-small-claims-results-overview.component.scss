@@ -1,0 +1,56 @@
+@import 'material/custom-theme-config';
+@import 'custom-components/extends/sale-actions-footer';
+@import 'src/styles/variables';
+@import 'custom-components/extends/dynamic-table';
+
+:host {
+  @extend %sale-actions-footer;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.scroll-box {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.mat-title {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.content-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: [table-box] auto auto;
+  grid-gap: 10px 4px;
+  margin-bottom: 10px;
+}
+
+.description-box {
+  font-size: 1.2rem;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid;
+  height: 88px;
+  border-radius: $pas-border-radius-sm;
+}
+
+@mixin small-claims-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
+
+  .description-box {
+    color: mat-color($foreground, base);
+    background-color: mat-color($background, card);
+    border-color: mat-color($primary);
+  }
+
+  .ignore-overlay {
+    background: mat-color($background, card);
+  }
+}
+
+@include small-claims-theme($pas-light-theme);

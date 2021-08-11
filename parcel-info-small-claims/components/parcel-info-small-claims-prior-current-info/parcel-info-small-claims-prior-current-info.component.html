@@ -1,0 +1,24 @@
+<div class="table-grid">
+  <ul class="table-column" *ngLet="yearsInfo$ | async as yearsInfo">
+    <li>
+      <span></span>
+    </li>
+    <li>
+      <span class="label">{{ yearsInfo.priorYearTitle }}</span>
+    </li>
+    <li>
+      <span class="label">{{ yearsInfo.currentYearTitle }}</span>
+    </li>
+  </ul>
+  <ul class="table-column" *ngFor="let priorCurrentColumn of priorCurrentColumns$ | async">
+    <li>
+      <span class="label">{{ priorCurrentColumn.title }}</span>
+    </li>
+    <li>
+      <span>{{ priorCurrentColumn.priorValue | money }}</span>
+    </li>
+    <li>
+      <span>{{ priorCurrentColumn.currentValue | money }}</span>
+    </li>
+  </ul>
+</div>

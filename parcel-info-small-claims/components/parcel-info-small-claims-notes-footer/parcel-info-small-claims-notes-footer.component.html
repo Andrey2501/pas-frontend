@@ -1,0 +1,35 @@
+<div
+  *ngLet="{ isEditMode: isEditMode$ | async, selectedNote: selectedNote$ | async } as props"
+  class="footer-form-group"
+  [class.ignore-overlay]="props.isEditMode"
+>
+  <div class="left-box">
+    <pas-footer-controls
+      *ngIf="isShowNoteControls$ | async"
+      [options]="footerControlsOptions$ | async"
+      (previous)="onPrev()"
+      (next)="onNext()"
+    >
+    </pas-footer-controls>
+  </div>
+  <div class="right-box">
+    <pas-footer-info
+      *ngIf="isShowNoteInfo$ | async"
+      [modifiedBy]="props.selectedNote.by"
+      [dateModified]="props.selectedNote.dateModified"
+    ></pas-footer-info>
+
+    <pas-notes-submit-actions *ngIf="props.isEditMode" [form]="form" (cancelEditing)="onCancelEditing()" (update)="onUpdate()">
+    </pas-notes-submit-actions>
+
+    <pas-notes-footer-actions
+      *ngIf="isShowNoteActions$ | async"
+      [isShowEditButton]="isShowEditButton$ | async"
+      [isShowAddButton]="isShowAddButton$ | async"
+      [isShowDeleteButton]="isShowDeleteButton$ | async"
+      (add)="onAdd($event)"
+      (delete)="onDelete()"
+      (edit)="onEdit()"
+    ></pas-notes-footer-actions>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+@import 'custom-components/extends/dynamic-input-group';
+@import 'material/custom-theme-config';
+@import 'custom-components/extends/sale-actions-footer';
+
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr) auto;
+  @extend %sale-actions-footer;
+}
+
+.table {
+  ::ng-deep {
+    .table-title {
+      display: none;
+    }
+  }
+}
+
+.small-claims-overview-left {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: [content-row] minmax(0, 1fr) [footer-row] auto;
+  padding: 6px;
+  border-right: 1px solid;
+  @include dynamic-input-group-theme($pas-light-theme);
+}
+
+.content-box {
+  grid-row: content-row;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: [table-box] auto minmax(0, 1fr);
+  grid-row-gap: 6px;
+}
+
+.footer-form-group {
+  padding: 5px;
+  grid-column: 1/3;
+}

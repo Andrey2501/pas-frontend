@@ -1,0 +1,39 @@
+<div class="footer-form-group">
+  <div class="left-box">
+    <pas-footer-controls
+      *ngIf="isShowControls$ | async"
+      [options]="footerControlsOptions$ | async"
+      (previous)="onPrev()"
+      (next)="onNext()"
+    ></pas-footer-controls>
+  </div>
+
+  <div class="right-box">
+    <pas-footer-info
+      *ngIf="isShowInfo$ | async"
+      [dateModified]="selectedAppraisalLastChange$ | async"
+      [modifiedBy]="selectedAppraisalLastChangeBy$ | async"
+    ></pas-footer-info>
+
+    <div class="footer-form-group-action-box" *ngIf="isGlobalModifyMode$ | async">
+      <button mat-flat-button color="primary" class="with-icon" *ngIf="isShowEdit$ | async" (click)="onEdit()">
+        <mat-icon>
+          <i class="icon-edit"></i>
+        </mat-icon>
+        Appraisal
+      </button>
+      <button mat-flat-button color="primary" class="with-icon" *ngIf="isShowAdd$ | async" (click)="onAdd()">
+        <mat-icon>
+          <i class="icon-add"></i>
+        </mat-icon>
+        Appraisal
+      </button>
+      <button mat-flat-button color="primary" class="with-icon" *ngIf="isShowDelete$ | async" (click)="onDelete()">
+        <mat-icon>
+          <i class="icon-delete"></i>
+        </mat-icon>
+        Appraisal
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+@import 'components/extends/base-dialog';
+
+:host {
+  @extend %base-dialog;
+
+  ::ng-deep {
+    .mat-table-box {
+      &.rows-1 {
+        height: 60px;
+      }
+    }
+  }
+}
+
+.capture {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}

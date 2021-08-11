@@ -1,0 +1,14 @@
+// Copied from src/app/parcel-info-grievances/components/parcel-info-grievances-footer/parcel-info-grievances-footer.component.scss
+@import 'custom-components/extends/sale-actions-footer';
+
+:host {
+  @extend %sale-actions-footer;
+
+  .left-box {
+    width: 100px;
+  }
+
+  .right-box {
+    flex-grow: 1;
+  }
+}

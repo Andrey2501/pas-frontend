@@ -1,0 +1,4 @@
+<pas-spinner class="bg-transparent" *ngIf="isLoading$ | async"></pas-spinner>
+<pas-parcel-info-small-claims-appraisals-table></pas-parcel-info-small-claims-appraisals-table>
+<pas-parcel-info-small-claims-appraisals-details *ngIf="selectedAppraisal$ | async"></pas-parcel-info-small-claims-appraisals-details>
+<pas-parcel-info-small-claims-appraisals-footer></pas-parcel-info-small-claims-appraisals-footer>

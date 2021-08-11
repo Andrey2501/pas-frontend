@@ -1,0 +1,6 @@
+@import 'custom-components/extends/sale-actions-footer';
+
+:host {
+  @extend %sale-actions-footer;
+  grid-row: footer-row;
+}

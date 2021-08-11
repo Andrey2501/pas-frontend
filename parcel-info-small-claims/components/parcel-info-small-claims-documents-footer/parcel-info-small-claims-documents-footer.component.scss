@@ -1,0 +1,6 @@
+// TODO: Copy-pasted style
+@import 'custom-components/extends/sale-actions-footer';
+
+:host {
+  @extend %sale-actions-footer;
+}

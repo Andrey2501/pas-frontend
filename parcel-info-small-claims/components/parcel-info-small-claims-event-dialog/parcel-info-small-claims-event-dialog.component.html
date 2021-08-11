@@ -1,0 +1,30 @@
+<ng-container *ngLet="{ isAbleToModifyEvent: isAbleToModifyEvent$ | async, selectedEventId: selectedEventId$ | async } as data">
+  <div class="dialog-header">
+    <button class="close-dialog-btn" mat-icon-button (click)="onCloseDialog()"></button>
+
+    <span mat-dialog-title>
+      <ng-container *ngIf="data.selectedEventId; else createEvent">{{ data.isAbleToModifyEvent ? 'Update' : 'View' }} Event</ng-container>
+      <ng-template #createEvent>Create Event</ng-template>
+    </span>
+  </div>
+  <pas-event-form
+    [eventData]="eventData$ | async"
+    [files]="eventFilesSources$ | async"
+    [isAbleToEdit]="data.isAbleToModifyEvent"
+  ></pas-event-form>
+
+  <mat-dialog-actions *ngIf="form">
+    <ng-container *ngIf="data.selectedEventId">
+      <button class="size-lg" *ngIf="isAbleToDeleteEvent$ | async" (click)="onDeleteEvent()" mat-stroked-button color="primary-light">
+        Delete
+      </button>
+    </ng-container>
+    <button class="size-lg" mat-flat-button color="primary" (click)="onClose()">Cancel</button>
+    <ng-container *ngIf="data.isAbleToModifyEvent">
+      <button class="size-lg" mat-flat-button color="accent" (click)="onSave()" [pasFormSubmit]="form">Save</button>
+    </ng-container>
+    <ng-container *ngIf="isShowEditBtn$ | async">
+      <button class="size-lg" mat-flat-button color="accent" (click)="onSetEditMode()">Edit</button>
+    </ng-container>
+  </mat-dialog-actions>
+</ng-container>

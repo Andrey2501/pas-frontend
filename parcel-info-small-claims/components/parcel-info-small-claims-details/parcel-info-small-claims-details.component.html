@@ -1,0 +1,31 @@
+<ng-container *ngLet="selectedMenu$ | async as selectedMenu">
+  <div class="tab-nav">
+    <ng-container *ngFor="let smallClaimsDetailsMenuValues of smallClaimsDetailsMenuValues$ | async">
+      <button
+        mat-stroked-button
+        color="primary"
+        [ngClass]="{ active: smallClaimsDetailsMenuValues.isActive }"
+        (click)="onChooseMenu(smallClaimsDetailsMenuValues.menuValue)"
+        *ngIf="smallClaimsDetailsMenuValues.isAbleToView"
+      >
+        {{ smallClaimsDetailsMenuValues.menuValue }}
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="tab-content" [ngSwitch]="selectedMenu">
+    <pas-parcel-info-small-claims-results-overview
+      *ngSwitchCase="smallClaimsDetailsMenu.Results"
+    ></pas-parcel-info-small-claims-results-overview>
+    <pas-parcel-info-small-claims-notes-overview *ngSwitchCase="smallClaimsDetailsMenu.Notes"></pas-parcel-info-small-claims-notes-overview>
+    <pas-parcel-info-small-claims-documents-overview
+      *ngSwitchCase="smallClaimsDetailsMenu.Documents"
+    ></pas-parcel-info-small-claims-documents-overview>
+    <pas-parcel-info-small-claims-parcel-information
+      *ngSwitchCase="smallClaimsDetailsMenu.ParcelInformation"
+    ></pas-parcel-info-small-claims-parcel-information>
+    <pas-parcel-info-small-claims-appraisals-overview
+      *ngSwitchCase="smallClaimsDetailsMenu.Appraisals"
+    ></pas-parcel-info-small-claims-appraisals-overview>
+  </div>
+</ng-container>
